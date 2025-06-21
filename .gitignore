@@ -42,3 +42,5 @@ next-env.d.ts
 
 # 一時的に動画ファイルを除外
 /public/videos/*.mp4
+
+public/videos/*
