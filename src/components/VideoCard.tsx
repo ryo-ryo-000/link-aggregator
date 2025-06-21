@@ -5,17 +5,39 @@ interface VideoCardProps {
 }
 
 export default function VideoCard({ video }: VideoCardProps) {
+  // YouTubeのURLからIDを抽出
+  const getYouTubeId = (url: string) => {
+    const match = url.match(/(?:youtu\.be\/|youtube\.com\/watch\?v=|youtube\.com\/embed\/)([^&\n?#]+)/);
+    return match ? match[1] : null;
+  };
+
+  const youtubeId = video.youtubeUrl ? getYouTubeId(video.youtubeUrl) : null;
+
   return (
     <div className="group relative bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
       <div className="aspect-video relative bg-gray-100 dark:bg-gray-700">
-        <video 
-          className="w-full h-full object-cover"
-          controls
-          preload="metadata"
-        >
-          <source src={`/videos/${video.fileName}`} type="video/mp4" />
-          お使いのブラウザは動画タグをサポートしていません。
-        </video>
+        {video.youtubeUrl && youtubeId ? (
+          <iframe
+            className="w-full h-full"
+            src={`https://www.youtube.com/embed/${youtubeId}`}
+            title={video.title}
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowFullScreen
+          />
+        ) : video.fileName ? (
+          <video 
+            className="w-full h-full object-cover"
+            controls
+            preload="metadata"
+          >
+            <source src={`/videos/${video.fileName}`} type="video/mp4" />
+            お使いのブラウザは動画タグをサポートしていません。
+          </video>
+        ) : (
+          <div className="w-full h-full flex items-center justify-center text-gray-400">
+            動画が利用できません
+          </div>
+        )}
       </div>
       
       <div className="p-5">

@@ -5,7 +5,7 @@ export const videos: Video[] = [
     id: '1',
     title: 'Class Of Vidu',
     description: 'Viduコンテスト参加作品アニメ',
-    fileName: 'ClassOfVidu.mp4',
+    youtubeUrl: 'https://youtu.be/CVKM4SYYUnc',
     uploadedAt: new Date('2025-01-21'),
     tags: ['Vidu', 'コンテスト', 'アニメ'],
   },

@@ -21,7 +21,8 @@ export interface Video {
   id: string;
   title: string;
   description: string;
-  fileName: string;
+  fileName?: string;
+  youtubeUrl?: string;
   thumbnail?: string;
   duration?: string;
   uploadedAt: Date;
