@@ -61,10 +61,6 @@ export default function VideoCard({ video }: VideoCardProps) {
             ))}
           </div>
         )}
-        
-        <div className="mt-3 text-xs text-gray-500 dark:text-gray-400">
-          {video.uploadedAt.toLocaleDateString('ja-JP')}
-        </div>
       </div>
     </div>
   );
